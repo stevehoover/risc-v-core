@@ -6,7 +6,7 @@
       counter dut (clk, reset, out);
 
       // Pass if core gives correct answer to test case.
-      assign passed = cyc_cnt > 100 ? 1'b1 : 1'b0;
+      assign passed = cyc_cnt > 100;
       assign failed = 1'b0;
    endmodule
    module counter (input logic clk, input logic reset, output logic [7:0] out);
@@ -14,7 +14,6 @@
    $reset = *reset;
    $delay[25:0] = ($reset || >>1$delay == 33554432) ? 0 : >>1$delay + 1;
    $num[7:0] = $reset ? 0 : ($delay == 33554432 ? >>1$num + 1 : >>1$num);
-   \SV_plus
-      assign out = $num;
+   *out = $num;
 \SV     
    endmodule
